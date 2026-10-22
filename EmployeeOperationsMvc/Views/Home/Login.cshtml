@@ -1,0 +1,43 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model EmployeeOperationsMvc.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Sign in";
+    var returnUrl = ViewData["ReturnUrl"] as string;
+}
+
+@* <link rel="stylesheet" href="~/css/login.css" /> *@
+
+<main class="login-page">
+    <section class="login-card" aria-labelledby="login-title">
+        <h1 id="login-title">Employee Operations System</h1>
+        <h2>Sign in to continue</h2>
+
+        <form asp-controller="Home"
+              asp-action="Login"
+              asp-route-returnUrl="@returnUrl"
+              method="post">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Username" class="form-label"></label>
+                <input asp-for="Username" class="form-control" autocomplete="username" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Password" class="form-label"></label>
+                <input asp-for="Password" class="form-control" autocomplete="current-password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-check">
+                <input asp-for="RememberMe" class="form-check-input" />
+                <label asp-for="RememberMe" class="form-check-label"></label>
+            </div>
+
+            <button type="submit" class="btn-primary">Sign in</button>
+        </form>
+    </section>
+</main>
